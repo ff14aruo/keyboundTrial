@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'">
+<title>きーばうんどぶろうらーれんしゅう帳</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700&family=DM+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand">
+      <span class="name">きーばうんどぶろうらーれんしゅう帳</span>
+    </div>
+    <button id="helpBtn" class="icon-btn" type="button" aria-label="遊び方を開く">?</button>
+  </header>
+
+  <section class="controls" aria-label="レベルと表示の切り替え">
+    <div class="levels" role="radiogroup" aria-label="レベル">
+      <button id="lv1" type="button" role="radio" aria-checked="true">LV1<span class="n" id="lv1n"></span></button>
+      <button id="lv2" type="button" role="radio" aria-checked="false">LV2<span class="n" id="lv2n"></span></button>
+      <button id="lv3" type="button" role="radio" aria-checked="false">LV3<span class="n" id="lv3n"></span></button>
+    </div>
+    <div class="toggles">
+      <label class="switch"><input id="romajiToggle" type="checkbox">ローマ字例</label>
+      <label class="switch"><input id="exampleToggle" type="checkbox" checked>入力例</label>
+    </div>
+  </section>
+
+  <main class="card" id="card">
+    <div id="practice" class="practice">
+      <section class="odai-panel" aria-label="お題">
+        <div class="odai-head"><span id="levelLabel">LV1</span><span id="progress" class="count">1 / 5</span></div>
+        <div id="romajiRow"><div id="romaji" class="romaji" aria-label="ローマ字の例"></div></div>
+        <div id="exampleRow"><div id="example" class="example" aria-label="入力例"></div></div>
+        <p class="odai" id="odai"></p>
+      </section>
+      <div class="row">
+        <span class="lbl"></span>
+        <div class="field">
+          <input id="imeInput" class="ime" type="text" lang="ja" autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false" maxlength="60" aria-label="ここに打つ">
+        </div>
+      </div>
+      <div class="row"><span class="lbl"></span><div id="result" class="result" aria-live="polite"></div></div>
+      <div class="row">
+        <span class="lbl"></span>
+        <div class="actions">
+          <button id="clearBtn" class="btn" type="button">全部消す<span class="key">Esc</span></button>
+          <button id="checkBtn" class="btn primary" type="button"><span id="checkLabel">答え合わせ</span><span class="key">Enter</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div id="finish" class="finish" hidden>
+      <h2>おつかれさま!</h2>
+      <p id="finishSummary"></p>
+      <div id="finishMissWrap" hidden>
+        <p>ひっかかったお題</p>
+        <ul id="finishMiss"></ul>
+      </div>
+      <button id="restartBtn" class="btn primary" type="button">もう一度<span class="key">Enter</span></button>
+    </div>
+  </main>
+
+  <p class="foot">FF14の非公式ファンツールです。本番の判定と細かい所が違うことがあります。</p>
+</div>
+
+<dialog id="help" aria-labelledby="helpTitle">
+  <div class="dlg-head">
+    <span id="helpStep" class="step">遊び方 1 / 5</span>
+    <button id="helpClose" class="icon-btn" type="button" aria-label="閉じる">×</button>
+  </div>
+  <h2 id="helpTitle"></h2>
+  <div id="helpBody"></div>
+  <div class="dlg-foot">
+    <button id="helpBack" class="btn" type="button">戻る</button>
+    <div id="helpDots" class="dots" aria-hidden="true"></div>
+    <button id="helpNext" class="btn primary" type="button" autofocus>次へ</button>
+  </div>
+</dialog>
+
+<script src="levels.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
